@@ -1,0 +1,11 @@
+name: MarkyCraft
+main: me.Markyroson.MarkyCraft.Example
+version: 1.0
+depend: [Vault]
+commands:
+    mcshop:
+        description: Brings up shop GUI
+    nav:
+        description: Base command
+    books:
+        description: Brings up books GUI

@@ -1,0 +1,4 @@
+# no_perms_message - Message if player has no permission.
+# Hub - Location set for the Hub.
+# Shop - Location set for the Shop.
+no_perms_message: '&4You do not have permission to do that command!'
