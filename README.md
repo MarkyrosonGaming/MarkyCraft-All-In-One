@@ -1,5 +1,5 @@
 # MarkyCraft-All-In-One
-MarkyCraft All In One plugin is a group project plugin for the markycraft minecraf server. if you have any suggestions on how to improve the above code (or anything of that manner), please let me know.
+MarkyCraft All In One plugin is a group project plugin for the MarkyCraft Minecraft Server. If you have any suggestions on how to improve the above code, additions to make it more efficient,feature items etc. (or anything of that manner), please let me know.
 
 
 
