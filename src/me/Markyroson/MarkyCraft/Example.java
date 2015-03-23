@@ -36,6 +36,7 @@ public class Example extends JavaPlugin implements Listener {
 	            getServer().getPluginManager().disablePlugin(this);
 	            return;
 	        }
+		 
 		String version = VersionUtils.getBukkitVersion();
 		if(version == null)
 		{
@@ -101,6 +102,8 @@ public class Example extends JavaPlugin implements Listener {
 	    api = new Api();
 		getServer().getPluginManager().registerEvents(new Listeners(), this);
 		Stores.register();
+		getConfig().options().copyDefaults(true);
+		saveConfig();
 
 	      //  setupPermissions();
 	      //  setupChat();

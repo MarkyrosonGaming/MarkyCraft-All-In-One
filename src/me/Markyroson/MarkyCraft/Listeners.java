@@ -1,21 +1,16 @@
 package me.Markyroson.MarkyCraft;
 
+import java.util.Arrays;
 import java.util.UUID;
 
 import me.Markyroson.MarkyCraft.lib.Books;
 import me.Markyroson.MarkyCraft.lib.Names;
 //import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
-
-
-
-
-
-
-
-
+import org.bukkit.ChatColor;
 //import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
@@ -23,10 +18,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+//import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 //import org.bukkit.plugin.RegisteredServiceProvider;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class Listeners implements Listener {
 
@@ -71,7 +69,7 @@ public class Listeners implements Listener {
 
 			if (item != null && item.hasItemMeta()
 					&& item.getItemMeta().hasDisplayName()) {
-				if (item.getItemMeta().getDisplayName().equals(Names.Items.Apple.name)) {
+				if (item.getItemMeta().getDisplayName().equals(Names.Items.Shop.Apple.name)) {
 					Player p = (Player) event.getWhoClicked();
 					
 					ItemStack apple = new ItemStack(Material.APPLE, 1);	//create itemstack to give player
@@ -153,4 +151,39 @@ public class Listeners implements Listener {
 			}​
 		}​
 	}*/
+	@EventHandler
+	public void onTeleport(PlayerChangedWorldEvent e) {
+		Player p = e.getPlayer();
+		//World from = e.getFrom();
+		String from = e.getFrom().getName();
+		ItemStack compass = new ItemStack(Material.COMPASS);
+		ItemMeta meta = compass.getItemMeta();
+		meta.setDisplayName("Server Navigator");
+		meta.setLore(Arrays.asList(ChatColor.GOLD + "Click Me!"));
+		compass.setItemMeta(meta);
+		//World to = e.getTo();
+		
+		/*if(!from.equals(to)) {
+			if(to.getName().equals("yourTargetWorld")) {
+				//Add item
+			} else if (from.getName().equals("yourTargetWorld")) {
+				//Remove item
+			}*/
+		//}
+		if(from.equals("world")) {
+			System.out.println("= world");
+			//Add item
+			p.getInventory().addItem(compass);
+			p.updateInventory();
+		} 
+		//if(!p.getWorld().equals("world")) {
+		else {
+			System.out.println("!= world");
+			 if (p.getInventory().contains(Material.COMPASS)) {
+			p.getInventory().removeItem(new ItemStack[] {
+                    new ItemStack(Material.COMPASS, 1) });
+	    	p.updateInventory();
+			 }
+		}
+	}
 }

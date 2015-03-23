@@ -17,7 +17,7 @@ public class Stores {
 		public static void Shop()	//Shop/store setup
 		{
 			shop = Bukkit.createInventory(null, Names.Info.Shop.size, Names.Info.Shop.name);
-			shop.setItem(0, Api.createItem(Material.APPLE, 1, 0, Names.Items.Apple.name, Names.Items.Apple.lore));
+			shop.setItem(0, Api.createItem(Material.APPLE, 1, 0, Names.Items.Shop.Apple.name, Names.Items.Shop.Apple.lore));
 		}
 		public static void ServerNavigator()	//ServerNavigator setup
 		{
