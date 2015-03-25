@@ -17,17 +17,23 @@ public class Stores {
 		public static void Shop()	//Shop/store setup
 		{
 			shop = Bukkit.createInventory(null, Names.Info.Shop.size, Names.Info.Shop.name);
-			shop.setItem(0, Api.createItem(Material.APPLE, 1, 0, Names.Items.Shop.Apple.name, Names.Items.Shop.Apple.lore));
+			shop.setItem(0, Api.createItem(Material.APPLE, 1, 0, Names.Items.Shop.Apple.name, Names.Items.Shop.Apple.lore, Names.Items.Shop.Apple.lore2));
+			shop.setItem(1, Api.createItem(Material.WATER_BUCKET, 1, 0, Names.Items.Shop.WaterBucket.name, Names.Items.Shop.WaterBucket.lore, Names.Items.Shop.WaterBucket.lore2));
+			shop.setItem(2, Api.createItem(Material.OBSIDIAN, 64, 0, Names.Items.Shop.Obsidian.name, Names.Items.Shop.Obsidian.lore1, Names.Items.Shop.Obsidian.lore2));
+			shop.setItem(3, Api.createItem(Material.ENDER_STONE, 32, 0, Names.Items.Shop.EndStone.name, Names.Items.Shop.EndStone.lore1, Names.Items.Shop.EndStone.lore2));
+			shop.setItem(4, Api.createItem(Material.NETHERRACK, 64, 0, Names.Items.Shop.Netherrack.name, Names.Items.Shop.Netherrack.lore1, Names.Items.Shop.Netherrack.lore2));
+			shop.setItem(5, Api.createItem(Material.GLOWSTONE, 16, 0, Names.Items.Shop.GlowStone.name, Names.Items.Shop.GlowStone.lore1, Names.Items.Shop.GlowStone.lore2));
+			//finish adding items (sand, cobblestone, stone, dirt, grass, ice, packed ice)
 		}
 		public static void ServerNavigator()	//ServerNavigator setup
 		{
 			navigator = Bukkit.createInventory(null, Names.Info.ServerNavigator.size, Names.Info.ServerNavigator.name);
-			navigator.setItem(0, Api.createItem(Material.BAKED_POTATO, 1, 0, Names.Items.HubPotato.name, Names.Items.HubPotato.lore));
+			navigator.setItem(0, Api.createItem(Material.BAKED_POTATO, 1, 0, Names.Items.HubPotato.name, Names.Items.HubPotato.lore, null));
 		}
 		public static void Books()	//Books setup
 		{
 			books = Bukkit.createInventory(null, Names.Info.Books.size, Names.Info.Books.name);
-			books.setItem(0, Api.createItem(Material.BOOK, 1, 0, Names.Items.Books.WebBook.name, Names.Items.Books.WebBook.lore));
+			books.setItem(0, Api.createItem(Material.BOOK, 1, 0, Names.Items.Books.WebBook.name, Names.Items.Books.WebBook.lore, null));
 		}
 	}
 	public static void register()

@@ -48,13 +48,15 @@ public class Api {
 	 * @param shrt set to 0
 	 * @param displayname name of material
 	 * @param lore lore of material
+	 * @param lore2 usually null but is not null if item has two lines of lore
+	 * @param return returns item
 	 */
 	
-	public static ItemStack createItem(Material material, int amount, int shrt, String displayname, String lore) {
+	public static ItemStack createItem(Material material, int amount, int shrt, String displayname, String lore, String lore2) {
 		ItemStack item = new ItemStack(material, amount, (short) shrt);
 		ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName(displayname);
-		meta.setLore(Arrays.asList(lore));
+		meta.setLore(Arrays.asList(lore, lore2));
 		item.setItemMeta(meta);
 		return item;
 	}

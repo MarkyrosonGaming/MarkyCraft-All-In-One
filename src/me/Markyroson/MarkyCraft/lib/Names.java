@@ -9,21 +9,104 @@ public class Names {
 	public static final class Items	//Name data for all items
 	{
 		public static final class Shop {
+			/* Template
+			 * public static final class
+			 * {
+			 * 		public static final String name = ChatColor.AQUA + "";	//name
+			 * 		public static final String lore = ChatColor.WHITE + "Price: " + ChatColor.GOLD + "";
+			 * 		public static final String lore2 = ChatColor.WHITE + "" + "";
+			 * }
+			 */
 			public static final class Apple
 			{
 				public static final String name = ChatColor.DARK_AQUA + "Apple";	//apple item name
-				public static final String lore = ChatColor.WHITE + "Price: " + ChatColor.GOLD + "$5" + "\n" + ChatColor.WHITE + "Right Click to sell for " + ChatColor.GOLD + "$5";	//apple lore
+				public static final String lore = ChatColor.WHITE + "Price: " + ChatColor.GOLD + "$5";	//apple lore
+				public static final String lore2 = ChatColor.WHITE + "Right Click to sell for " + ChatColor.GOLD + "$5";
 			}
 			public static final class WaterBucket
 			{
 				public static final String name = ChatColor.AQUA + "Water Bucket";	//water bucket item name
-				public static final String lore = ChatColor.WHITE + "Price: " + ChatColor.GOLD + plugin.getConfig().getString("Shop.WaterBucket_price");
+				public static final String lore = ChatColor.WHITE + "Price: " + ChatColor.GOLD + "$75";
 				public static final String lore2 = ChatColor.WHITE + "Cannot be sold to shop";
 			}
-			public static final class LavaBucket
+			public static final class Lava_Bucket
 			{
 				public static final String name = ChatColor.AQUA + "Lava Bucket";	//name
-				public static final String lore = ChatColor.WHITE + "Price: " + ChatColor.GOLD + plugin.getConfig().getString("Shop.LavaBucket_price");
+				public static final String lore = ChatColor.WHITE + "Price: " + ChatColor.GOLD + "$50";
+			}
+			public static final class Obsidian
+			{
+				public static final String name = ChatColor.AQUA + "Obsidian";	//name
+				public static final String lore1 = ChatColor.WHITE + "Price: " + ChatColor.GOLD + "$175";
+				public static final String lore2 = ChatColor.WHITE + "Right Click to sell for " + ChatColor.GOLD + "$125";
+			}
+			public static final class EndStone
+			{
+				public static final String name = ChatColor.AQUA + "EndStone";	//name
+				public static final String lore1 = ChatColor.WHITE + "Price: " + ChatColor.GOLD + "$150";
+				public static final String lore2 = ChatColor.WHITE + "Right Click to sell for " + "$50";
+			}
+			public static final class Netherrack
+			{
+				public static final String name = ChatColor.AQUA + "Netherrack";	//name
+				public static final String lore1 = ChatColor.WHITE + "Price: " + ChatColor.GOLD + "$62.50";
+				public static final String lore2 = ChatColor.WHITE + "Right Click to sell for " + ChatColor.GOLD + "$25";
+			}
+			public static final class GlowStone
+			{
+				public static final String name = ChatColor.AQUA + "Glowstone";	//name
+				public static final String lore1 = ChatColor.WHITE + "Price: " + ChatColor.GOLD + "$100";
+				public static final String lore2 = ChatColor.WHITE + "Right Click to sell for " + ChatColor.GOLD + "$10";
+			}
+			public static final class Gravel
+			{
+				public static final String name = ChatColor.AQUA + "Gravel";	//name
+				public static final String lore = ChatColor.WHITE + "Price: " + ChatColor.GOLD + "$75";
+				public static final String lore2 = ChatColor.WHITE + "Right Click to sell for " + ChatColor.GOLD + "$12.50";
+			}
+			
+			//to add listener to & to shop
+			public static final class Sand
+			{
+					public static final String name = ChatColor.AQUA + "Sand";	//name
+			 		public static final String lore = ChatColor.WHITE + "Price: " + ChatColor.GOLD + "$75";
+			  		public static final String lore2 = ChatColor.WHITE + "Right Click to sell for " + ChatColor.GOLD + "$17.50";
+			}
+			public static final class CobbleStone
+			{
+					public static final String name = ChatColor.AQUA + "Cobblestone";	//name
+			 		public static final String lore = ChatColor.WHITE + "Price: " + ChatColor.GOLD + "$100";
+			  		public static final String lore2 = ChatColor.WHITE + "Right Click to sell for " + ChatColor.GOLD + "$25";
+			}
+			public static final class Stone
+			{
+					public static final String name = ChatColor.AQUA + "Stone";	//name
+			 		public static final String lore = ChatColor.WHITE + "Price: " + ChatColor.GOLD + "$137.50";
+			  		public static final String lore2 = ChatColor.WHITE + "Right Click to sell for " + ChatColor.GOLD + "$37.50";
+			}
+			public static final class Dirt
+			{
+					public static final String name = ChatColor.AQUA + "Dirt";	//name
+			 		public static final String lore = ChatColor.WHITE + "Price: " + ChatColor.GOLD + "$75";
+			  		public static final String lore2 = ChatColor.WHITE + "Right Click to sell for " + ChatColor.GOLD + "$17.50";
+			}
+			public static final class Grass
+			{
+					public static final String name = ChatColor.AQUA + "Grass";	//name
+			 		public static final String lore = ChatColor.WHITE + "Price: " + ChatColor.GOLD + "$92.50";
+			  		public static final String lore2 = ChatColor.WHITE + "Right Click to sell for " + ChatColor.GOLD + "$92.50";
+			}
+			public static final class Ice
+			{
+					public static final String name = ChatColor.AQUA + "Ice";	//name
+			 		public static final String lore = ChatColor.WHITE + "Price: " + ChatColor.GOLD + "$150";
+			  		public static final String lore2 = ChatColor.WHITE + "Cannot be sold to shop";
+			}
+			public static final class PackedIce
+			{
+					public static final String name = ChatColor.AQUA + "PackedIce";	//name
+			 		public static final String lore = ChatColor.WHITE + "Price: " + ChatColor.GOLD + "$75";
+			  		public static final String lore2 = ChatColor.WHITE + "Cannot be sold to shop";
 			}
 		}
 			public static final class HubPotato
