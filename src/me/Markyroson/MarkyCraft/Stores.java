@@ -24,6 +24,13 @@ public class Stores {
 			shop.setItem(4, Api.createItem(Material.NETHERRACK, 64, 0, Names.Items.Shop.Netherrack.name, Names.Items.Shop.Netherrack.lore1, Names.Items.Shop.Netherrack.lore2));
 			shop.setItem(5, Api.createItem(Material.GLOWSTONE, 16, 0, Names.Items.Shop.GlowStone.name, Names.Items.Shop.GlowStone.lore1, Names.Items.Shop.GlowStone.lore2));
 			//finish adding items (sand, cobblestone, stone, dirt, grass, ice, packed ice)
+			shop.setItem(6, Api.createItem(Material.SAND, 64, 0, Names.Items.Shop.Sand.name, Names.Items.Shop.Sand.lore, Names.Items.Shop.Sand.lore2));
+			shop.setItem(7, Api.createItem(Material.COBBLESTONE, 64, 0, Names.Items.Shop.CobbleStone.name, Names.Items.Shop.CobbleStone.lore, Names.Items.Shop.CobbleStone.lore2));
+			shop.setItem(8, Api.createItem(Material.STONE, 64, 0, Names.Items.Shop.Stone.name, Names.Items.Shop.Stone.lore, Names.Items.Shop.Stone.lore2));
+			shop.setItem(9, Api.createItem(Material.DIRT, 64, 0, Names.Items.Shop.Dirt.name, Names.Items.Shop.Dirt.lore, Names.Items.Shop.Dirt.lore2));
+			shop.setItem(10, Api.createItem(Material.GRASS, 64, 0, Names.Items.Shop.Grass.name, Names.Items.Shop.Grass.lore, Names.Items.Shop.Grass.lore2));
+			shop.setItem(11, Api.createItem(Material.ICE, 16, 0, Names.Items.Shop.Ice.name, Names.Items.Shop.Ice.lore, Names.Items.Shop.Ice.lore2));
+			shop.setItem(12, Api.createItem(Material.PACKED_ICE, 16, 0, Names.Items.Shop.PackedIce.name, Names.Items.Shop.PackedIce.lore, Names.Items.Shop.PackedIce.lore2));
 		}
 		public static void ServerNavigator()	//ServerNavigator setup
 		{

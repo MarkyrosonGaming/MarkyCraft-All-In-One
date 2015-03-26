@@ -63,15 +63,17 @@ public class Listeners implements Listener {
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
 		ItemStack item = event.getCurrentItem();
-
+	
 		if (event.getInventory().getName().equals(Names.Info.Shop.name)) {
 			event.setCancelled(true);
+			
 			//APPLE
 			if (item != null && item.hasItemMeta()
 					&& item.getItemMeta().hasDisplayName()) {
 				if (item.getItemMeta().getDisplayName().equals(Names.Items.Shop.Apple.name)) {
 					Player p = (Player) event.getWhoClicked();
-					
+					Double balance = Example.econ.getBalance(p);	//adds ability to check if player has enough $ to prevent negative balance
+					if (balance >= 5){
 					ItemStack apple = new ItemStack(Material.APPLE, 1);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
 						    EconomyResponse r = Example.econ.withdrawPlayer(p, 5);
@@ -83,6 +85,9 @@ public class Listeners implements Listener {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
 	                    }
+					} else {
+						p.sendMessage("You don't have enough money!");
+					}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.APPLE)) {
 	                        	    EconomyResponse r = Example.econ.depositPlayer(p, 5);
@@ -98,12 +103,15 @@ public class Listeners implements Listener {
 	                        else {
 		                    	p.sendMessage("You don't have enough apples to sell!");
 		                    }
-	                    } 
+	                    }
+				//}
+						}
 					}
 				//Water Bucket
 				if (item.getItemMeta().getDisplayName().equals(Names.Items.Shop.WaterBucket.name)) {
 					Player p = (Player) event.getWhoClicked();
-					
+					Double balance = Example.econ.getBalance(p);
+					if (balance >= 50){
 					ItemStack waterBucket = new ItemStack(Material.WATER_BUCKET, 1);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
 						    EconomyResponse r = Example.econ.withdrawPlayer(p, 50);
@@ -115,16 +123,20 @@ public class Listeners implements Listener {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
 	                    }
+					} else {
+						p.sendMessage("You don't have enough money!");
+					}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.WATER_BUCKET)) {
 	                        		p.sendMessage("You can't sell a Water Bucket!");
 	                        }
-	                    } 
+	                    }
 					}
 				//Lava Water
 				if (item.getItemMeta().getDisplayName().equals(Names.Items.Shop.Lava_Bucket.name)) {
 					Player p = (Player) event.getWhoClicked();
-					
+					Double balance = Example.econ.getBalance(p);
+					if (balance >= 75){
 					ItemStack lavaBucket = new ItemStack(Material.LAVA_BUCKET, 1);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
 						    EconomyResponse r = Example.econ.withdrawPlayer(p, 75);
@@ -136,6 +148,7 @@ public class Listeners implements Listener {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
 	                    }
+					}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.LAVA_BUCKET)) {
 	                        		p.sendMessage("You can't sell a Lava Bucket!");
@@ -145,7 +158,8 @@ public class Listeners implements Listener {
 				//Obsidian
 				if (item.getItemMeta().getDisplayName().equals(Names.Items.Shop.Obsidian.name)) {
 					Player p = (Player) event.getWhoClicked();
-					
+					Double balance = Example.econ.getBalance(p);
+					if (balance >= 175){
 					ItemStack obsidian = new ItemStack(Material.OBSIDIAN, 64);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
 						    EconomyResponse r = Example.econ.withdrawPlayer(p, 175);
@@ -157,6 +171,7 @@ public class Listeners implements Listener {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
 	                    }
+				}
 	                    if (event.getClick().isRightClick()) {
 	                    	 if (p.getInventory().contains(Material.OBSIDIAN)) {
 	                        	    EconomyResponse r = Example.econ.depositPlayer(p, 125);
@@ -177,7 +192,8 @@ public class Listeners implements Listener {
 				//EndStone
 				if (item.getItemMeta().getDisplayName().equals(Names.Items.Shop.EndStone.name)) {
 					Player p = (Player) event.getWhoClicked();
-					
+					Double balance = Example.econ.getBalance(p);
+					if (balance >= 150){
 					ItemStack endStone = new ItemStack(Material.ENDER_STONE, 64);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
 						    EconomyResponse r = Example.econ.withdrawPlayer(p, 150);
@@ -189,6 +205,7 @@ public class Listeners implements Listener {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
 	                    }
+				}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.ENDER_STONE)) {
 		                        	    EconomyResponse r = Example.econ.depositPlayer(p, 50);
@@ -209,7 +226,8 @@ public class Listeners implements Listener {
 				//Netherrack
 				if (item.getItemMeta().getDisplayName().equals(Names.Items.Shop.Netherrack.name)) {
 					Player p = (Player) event.getWhoClicked();
-					
+					Double balance = Example.econ.getBalance(p);
+					if (balance >= 62.50){
 					ItemStack netherRack = new ItemStack(Material.NETHERRACK, 64);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
 						    EconomyResponse r = Example.econ.withdrawPlayer(p, 62.50);
@@ -221,6 +239,7 @@ public class Listeners implements Listener {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
 	                    }
+				}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.NETHERRACK)) {
 		                        	    EconomyResponse r = Example.econ.depositPlayer(p, 25);
@@ -241,7 +260,8 @@ public class Listeners implements Listener {
 				//Glowstone
 				if (item.getItemMeta().getDisplayName().equals(Names.Items.Shop.GlowStone.name)) {
 					Player p = (Player) event.getWhoClicked();
-					
+					Double balance = Example.econ.getBalance(p);
+					if (balance >= 100){
 					ItemStack netherRack = new ItemStack(Material.GLOWSTONE, 16);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
 						    EconomyResponse r = Example.econ.withdrawPlayer(p, 100);
@@ -253,6 +273,7 @@ public class Listeners implements Listener {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
 	                    }
+				}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.GLOWSTONE)) {
 		                        	    EconomyResponse r = Example.econ.depositPlayer(p, 10);
@@ -273,7 +294,8 @@ public class Listeners implements Listener {
 				//Gravel
 				if (item.getItemMeta().getDisplayName().equals(Names.Items.Shop.Gravel.name)) {
 					Player p = (Player) event.getWhoClicked();
-					
+					Double balance = Example.econ.getBalance(p);
+					if (balance >= 75){
 					ItemStack netherRack = new ItemStack(Material.GRAVEL, 64);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
 						    EconomyResponse r = Example.econ.withdrawPlayer(p, 75);
@@ -285,6 +307,7 @@ public class Listeners implements Listener {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
 	                    }
+				}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.GRAVEL)) {
 		                        	    EconomyResponse r = Example.econ.depositPlayer(p, 12.50);
@@ -305,7 +328,8 @@ public class Listeners implements Listener {
 				//Sand
 				if (item.getItemMeta().getDisplayName().equals(Names.Items.Shop.Sand.name)) {
 					Player p = (Player) event.getWhoClicked();
-					
+					Double balance = Example.econ.getBalance(p);
+					if (balance >= 75){
 					ItemStack netherRack = new ItemStack(Material.SAND, 64);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
 						    EconomyResponse r = Example.econ.withdrawPlayer(p, 75);
@@ -317,6 +341,7 @@ public class Listeners implements Listener {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
 	                    }
+				}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.SAND)) {
 		                        	    EconomyResponse r = Example.econ.depositPlayer(p, 17.50);
@@ -337,7 +362,8 @@ public class Listeners implements Listener {
 				//Cobblestone
 				if (item.getItemMeta().getDisplayName().equals(Names.Items.Shop.CobbleStone.name)) {
 					Player p = (Player) event.getWhoClicked();
-					
+					Double balance = Example.econ.getBalance(p);
+					if (balance >= 100){
 					ItemStack netherRack = new ItemStack(Material.COBBLESTONE, 64);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
 						    EconomyResponse r = Example.econ.withdrawPlayer(p, 100);
@@ -349,6 +375,7 @@ public class Listeners implements Listener {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
 	                    }
+				}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.COBBLESTONE)) {
 		                        	    EconomyResponse r = Example.econ.depositPlayer(p, 25);
@@ -369,7 +396,8 @@ public class Listeners implements Listener {
 				//Stone
 				if (item.getItemMeta().getDisplayName().equals(Names.Items.Shop.Stone.name)) {
 					Player p = (Player) event.getWhoClicked();
-					
+					Double balance = Example.econ.getBalance(p);
+					if (balance >= 137.50){
 					ItemStack netherRack = new ItemStack(Material.STONE, 64);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
 						    EconomyResponse r = Example.econ.withdrawPlayer(p, 137.50);
@@ -381,6 +409,7 @@ public class Listeners implements Listener {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
 	                    }
+				}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.STONE)) {
 		                        	    EconomyResponse r = Example.econ.depositPlayer(p, 37.50);
@@ -401,7 +430,8 @@ public class Listeners implements Listener {
 				//Dirt
 				if (item.getItemMeta().getDisplayName().equals(Names.Items.Shop.Dirt.name)) {
 					Player p = (Player) event.getWhoClicked();
-					
+					Double balance = Example.econ.getBalance(p);
+					if (balance >= 75){
 					ItemStack netherRack = new ItemStack(Material.DIRT, 64);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
 						    EconomyResponse r = Example.econ.withdrawPlayer(p, 75);
@@ -413,6 +443,7 @@ public class Listeners implements Listener {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
 	                    }
+				}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.DIRT)) {
 		                        	    EconomyResponse r = Example.econ.depositPlayer(p, 75);
@@ -433,7 +464,8 @@ public class Listeners implements Listener {
 				//Grass
 				if (item.getItemMeta().getDisplayName().equals(Names.Items.Shop.Grass.name)) {
 					Player p = (Player) event.getWhoClicked();
-					
+					Double balance = Example.econ.getBalance(p);
+					if (balance >= 75){
 					ItemStack netherRack = new ItemStack(Material.GRASS, 64);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
 						    EconomyResponse r = Example.econ.withdrawPlayer(p, 92.50);
@@ -445,6 +477,7 @@ public class Listeners implements Listener {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
 	                    }
+				}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.GRASS)) {
 		                        	    EconomyResponse r = Example.econ.depositPlayer(p, 92.50);
@@ -465,7 +498,8 @@ public class Listeners implements Listener {
 				//Ice
 				if (item.getItemMeta().getDisplayName().equals(Names.Items.Shop.Ice.name)) {
 					Player p = (Player) event.getWhoClicked();
-					
+					Double balance = Example.econ.getBalance(p);
+					if (balance >= 150){
 					ItemStack netherRack = new ItemStack(Material.ICE, 16);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
 						    EconomyResponse r = Example.econ.withdrawPlayer(p, 150);
@@ -477,6 +511,7 @@ public class Listeners implements Listener {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
 	                    }
+				}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.ICE)) {
 	                        	p.sendMessage("You can't sell a Ice!");                         
@@ -486,7 +521,8 @@ public class Listeners implements Listener {
 				//Packed Ice
 				if (item.getItemMeta().getDisplayName().equals(Names.Items.Shop.PackedIce.name)) {
 					Player p = (Player) event.getWhoClicked();
-					
+					Double balance = Example.econ.getBalance(p);
+					if (balance >= 75){
 					ItemStack netherRack = new ItemStack(Material.PACKED_ICE, 16);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
 						    EconomyResponse r = Example.econ.withdrawPlayer(p, 75);
@@ -498,6 +534,7 @@ public class Listeners implements Listener {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
 	                    }
+				}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.PACKED_ICE)) {
 	                        		p.sendMessage("You can't sell a Packed Ice!");                         
@@ -542,7 +579,7 @@ public class Listeners implements Listener {
 			}
 		}
 		}
-	}
+	//}
 	
 	/*@EventHandler
 	public void onRightClick(PlayerInteractEvent event)

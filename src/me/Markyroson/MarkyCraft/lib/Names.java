@@ -129,7 +129,7 @@ public class Names {
 		public static final class Shop	//sub class for shop
 		{
 			public static final String name = "My " + ChatColor.GOLD + "Custom " + ChatColor.BLACK + "Shop";	//name of custom inventory/UI
-			public static final int size = 9;	//Number of inventory slots (a.k.a. slots)
+			public static final int size = 18;	//Number of inventory slots (a.k.a. slots)
 		}
 		public static final class ServerNavigator	//sub class for ServerNavigator
 		{

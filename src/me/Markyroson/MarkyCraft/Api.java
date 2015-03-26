@@ -13,8 +13,9 @@ import me.Markyroson.MarkyCraft.Example;
 public class Api {
 /*
  * This is the class for a custom virtual currency API that I created following a
- * tutorial. I am working to move away from this API and hope to eventually work it
- * out of the project completely.
+ * tutorial. I am working to move away from this API's currency systems and implement
+ * vault more so and hope to eventually work out the silver currency from the project
+ * completely.
  */
 	private Example plugin = Example.getInstance();
 /**
