@@ -1,11 +1,10 @@
 package me.Markyroson.MarkyCraft.lib;
 
-import me.Markyroson.MarkyCraft.Example;
-
+//import me.Markyroson.MarkyCraft.Example;
 import org.bukkit.ChatColor;
 
 public class Names {
-	private static Example plugin = Example.getInstance();
+	//private static Example plugin = Example.getInstance();
 	public static final class Items	//Name data for all items
 	{
 		public static final class Shop {
@@ -108,6 +107,12 @@ public class Names {
 			 		public static final String lore = ChatColor.WHITE + "Price: " + ChatColor.GOLD + "$75";
 			  		public static final String lore2 = ChatColor.WHITE + "Cannot be sold to shop";
 			}
+			public static final class Bedrock
+			{
+				public final String name = ChatColor.AQUA + "Bedrock";	//name
+				public final String lore = ChatColor.WHITE + "Right click to sell for " + ChatColor.GOLD + "$99999999999999999";
+						
+			}
 		}
 			public static final class HubPotato
 			{
@@ -128,7 +133,7 @@ public class Names {
 	{
 		public static final class Shop	//sub class for shop
 		{
-			public static final String name = "My " + ChatColor.GOLD + "Custom " + ChatColor.BLACK + "Shop";	//name of custom inventory/UI
+			public static final String name = "Marky" + ChatColor.GOLD + "Craft " + ChatColor.DARK_GREEN + "Survival " + ChatColor.BLACK + "Shop";	//name of custom inventory/UI
 			public static final int size = 18;	//Number of inventory slots (a.k.a. slots)
 		}
 		public static final class ServerNavigator	//sub class for ServerNavigator
@@ -141,5 +146,9 @@ public class Names {
 			public static final String name = ChatColor.AQUA + "Server " + ChatColor.GOLD + "Books";	//name of custom inventory/UI
 			public static final int size = 9;	//Number of inventory slots (a.k.a. slots)
 		}
+	}
+	public static final class Permissons
+	{
+		public static final String activate_shop_gui = "activate_shop_gui";
 	}
 }

@@ -1,6 +1,7 @@
 package me.Markyroson.MarkyCraft;
 
 import me.Markyroson.MarkyCraft.lib.Names;
+//import me.Markyroson.MarkyCraft.lib.Names.Items;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
@@ -12,35 +13,54 @@ public class Stores {
 	public static Inventory navigator; //Creates server navigator inventory
 	public static Inventory books;	//Creates books inventory
 	
+	private static Names.Items.Shop.Bedrock bedrock;
+	private static Names.Items.Shop.EndStone endstone;
+	private static Names.Items.Shop.Obsidian obsidian;
+	private static Names.Items.Shop.WaterBucket waterbucket;
+	private static Names.Items.Shop.Netherrack netherrack;
+	private static Names.Items.Shop.Sand sand;
+	private static Names.Items.Shop.Grass grass;
+	private static Names.Items.Shop.Ice ice;
+	private static Names.Items.Shop.PackedIce packedice;
+	private static Names.Items.Shop.CobbleStone cobblestone;
+	private static Names.Items.Shop.GlowStone glowstone;
+	private static Names.Items.Shop.Dirt dirt;
+	private static Names.Items.Shop.Stone stone;
+	private static Names.Items.HubPotato hubpotato;
+	private static Names.Items.Books.WebBook webBook;
+	
 	public final static class Setups
 	{
+		@SuppressWarnings("static-access")
 		public static void Shop()	//Shop/store setup
 		{
 			shop = Bukkit.createInventory(null, Names.Info.Shop.size, Names.Info.Shop.name);
 			shop.setItem(0, Api.createItem(Material.APPLE, 1, 0, Names.Items.Shop.Apple.name, Names.Items.Shop.Apple.lore, Names.Items.Shop.Apple.lore2));
-			shop.setItem(1, Api.createItem(Material.WATER_BUCKET, 1, 0, Names.Items.Shop.WaterBucket.name, Names.Items.Shop.WaterBucket.lore, Names.Items.Shop.WaterBucket.lore2));
-			shop.setItem(2, Api.createItem(Material.OBSIDIAN, 64, 0, Names.Items.Shop.Obsidian.name, Names.Items.Shop.Obsidian.lore1, Names.Items.Shop.Obsidian.lore2));
-			shop.setItem(3, Api.createItem(Material.ENDER_STONE, 32, 0, Names.Items.Shop.EndStone.name, Names.Items.Shop.EndStone.lore1, Names.Items.Shop.EndStone.lore2));
-			shop.setItem(4, Api.createItem(Material.NETHERRACK, 64, 0, Names.Items.Shop.Netherrack.name, Names.Items.Shop.Netherrack.lore1, Names.Items.Shop.Netherrack.lore2));
-			shop.setItem(5, Api.createItem(Material.GLOWSTONE, 16, 0, Names.Items.Shop.GlowStone.name, Names.Items.Shop.GlowStone.lore1, Names.Items.Shop.GlowStone.lore2));
-			//finish adding items (sand, cobblestone, stone, dirt, grass, ice, packed ice)
-			shop.setItem(6, Api.createItem(Material.SAND, 64, 0, Names.Items.Shop.Sand.name, Names.Items.Shop.Sand.lore, Names.Items.Shop.Sand.lore2));
-			shop.setItem(7, Api.createItem(Material.COBBLESTONE, 64, 0, Names.Items.Shop.CobbleStone.name, Names.Items.Shop.CobbleStone.lore, Names.Items.Shop.CobbleStone.lore2));
-			shop.setItem(8, Api.createItem(Material.STONE, 64, 0, Names.Items.Shop.Stone.name, Names.Items.Shop.Stone.lore, Names.Items.Shop.Stone.lore2));
-			shop.setItem(9, Api.createItem(Material.DIRT, 64, 0, Names.Items.Shop.Dirt.name, Names.Items.Shop.Dirt.lore, Names.Items.Shop.Dirt.lore2));
-			shop.setItem(10, Api.createItem(Material.GRASS, 64, 0, Names.Items.Shop.Grass.name, Names.Items.Shop.Grass.lore, Names.Items.Shop.Grass.lore2));
-			shop.setItem(11, Api.createItem(Material.ICE, 16, 0, Names.Items.Shop.Ice.name, Names.Items.Shop.Ice.lore, Names.Items.Shop.Ice.lore2));
-			shop.setItem(12, Api.createItem(Material.PACKED_ICE, 16, 0, Names.Items.Shop.PackedIce.name, Names.Items.Shop.PackedIce.lore, Names.Items.Shop.PackedIce.lore2));
+			shop.setItem(1, Api.createItem(Material.WATER_BUCKET, 1, 0, waterbucket.name, waterbucket.lore, waterbucket.lore2));
+			shop.setItem(2, Api.createItem(Material.OBSIDIAN, 64, 0, obsidian.name, obsidian.lore1, obsidian.lore2));
+			shop.setItem(3, Api.createItem(Material.ENDER_STONE, 32, 0, endstone.name, endstone.lore1, endstone.lore2));
+			shop.setItem(4, Api.createItem(Material.NETHERRACK, 64, 0, netherrack.name, netherrack.lore1, netherrack.lore2));
+			shop.setItem(5, Api.createItem(Material.GLOWSTONE, 16, 0, glowstone.name, glowstone.lore1, glowstone.lore2));
+			shop.setItem(6, Api.createItem(Material.SAND, 64, 0, sand.name, sand.lore, sand.lore2));
+			shop.setItem(7, Api.createItem(Material.COBBLESTONE, 64, 0, cobblestone.name, cobblestone.lore, cobblestone.lore2));
+			shop.setItem(8, Api.createItem(Material.STONE, 64, 0, stone.name, stone.lore, stone.lore2));
+			shop.setItem(9, Api.createItem(Material.DIRT, 64, 0, dirt.name, dirt.lore, dirt.lore2));
+			shop.setItem(10, Api.createItem(Material.GRASS, 64, 0, grass.name, grass.lore, grass.lore2));
+			shop.setItem(11, Api.createItem(Material.ICE, 16, 0, ice.name, ice.lore, ice.lore2));
+			shop.setItem(12, Api.createItem(Material.PACKED_ICE, 16, 0, packedice.name, packedice.lore, packedice.lore2));
+			shop.setItem(13, Api.createItem(Material.BEDROCK, 1, 0, bedrock.name, bedrock.lore, null));
 		}
+		@SuppressWarnings("static-access")
 		public static void ServerNavigator()	//ServerNavigator setup
 		{
 			navigator = Bukkit.createInventory(null, Names.Info.ServerNavigator.size, Names.Info.ServerNavigator.name);
-			navigator.setItem(0, Api.createItem(Material.BAKED_POTATO, 1, 0, Names.Items.HubPotato.name, Names.Items.HubPotato.lore, null));
+			navigator.setItem(0, Api.createItem(Material.BAKED_POTATO, 1, 0, hubpotato.name, hubpotato.lore, null));
 		}
+		@SuppressWarnings("static-access")
 		public static void Books()	//Books setup
 		{
 			books = Bukkit.createInventory(null, Names.Info.Books.size, Names.Info.Books.name);
-			books.setItem(0, Api.createItem(Material.BOOK, 1, 0, Names.Items.Books.WebBook.name, Names.Items.Books.WebBook.lore, null));
+			books.setItem(0, Api.createItem(Material.BOOK, 1, 0, webBook.name, webBook.lore, null));
 		}
 	}
 	public static void register()

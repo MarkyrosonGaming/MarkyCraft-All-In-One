@@ -4,15 +4,13 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.UUID;
 import java.util.logging.Logger;
-
 import me.Markyroson.MarkyCraft.Stores;
+import me.Markyroson.MarkyCraft.lib.Names;
+import me.Markyroson.MarkyCraft.lib.Names.Permissons;
 import me.Markyroson.MarkyCraft.utils.VersionUtils;
 import net.milkbowl.vault.economy.Economy;
-import net.milkbowl.vault.economy.EconomyResponse;
-
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -27,7 +25,7 @@ public class Example extends JavaPlugin implements Listener {
 	private static Example instance;
 	public static Economy econ = null;
 	private static final Logger log = Logger.getLogger("Minecraft");
-	//private Stores.Setups storeSetups;
+	private static Names.Permissons perms;
 	
 	public void onEnable() {
 		instance = this;
@@ -36,7 +34,6 @@ public class Example extends JavaPlugin implements Listener {
 	            getServer().getPluginManager().disablePlugin(this);
 	            return;
 	        }
-		 
 		String version = VersionUtils.getBukkitVersion();
 		if(version == null)
 		{
@@ -82,10 +79,6 @@ public class Example extends JavaPlugin implements Listener {
 		{
 			
 		}
-		//else if("v8_3_R1".equals(version))
-	//	{
-			
-	//	}
 		else
 		{
 			printWarnAndDisable(new String[] {
@@ -98,23 +91,19 @@ public class Example extends JavaPlugin implements Listener {
 			
 			return;
 		}
-	    plugin = this;
+	    plugin = this;	//make plugin equal to this
 	    api = new Api();
-		getServer().getPluginManager().registerEvents(new Listeners(), this);
-		Stores.register();
-		getConfig().options().copyDefaults(true);
-		saveConfig();
-
-	      //  setupPermissions();
-	      //  setupChat();
+		getServer().getPluginManager().registerEvents(new Listeners(), this);	//register Listener events
+		Stores.register();	//register stores/GUIs
+		getConfig().options().copyDefaults(true);	//copies defaults to config
+		saveConfig();	//saves config
 	}
 	
 	public void onDisable() {
-		for(Entry<UUID, Integer> entry : money.entrySet()) {
+		/*for(Entry<UUID, Integer> entry : money.entrySet()) {
 			getConfig().set(entry.getKey() + ".Silver", entry.getValue());
-		}
-
-		saveConfig();
+		}*/
+		//saveConfig();	//save config
 	}
 	
 	public static Example getInstance() {
@@ -129,7 +118,7 @@ public class Example extends JavaPlugin implements Listener {
 	    return money;
 	}
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("static-access")
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 	
 	    if(!(sender instanceof Player)) {
@@ -137,17 +126,17 @@ public class Example extends JavaPlugin implements Listener {
 		}
 	
 		Player player = (Player) sender;
-		if (cmd.getName().equalsIgnoreCase("mcshop")) {
-			player.openInventory(Stores.shop);
+		
+			if (cmd.getName().equalsIgnoreCase("shop")) {
+				if (player.hasPermission(perms.activate_shop_gui)) {
+					player.openInventory(Stores.shop);
+				} else {
+					player.sendMessage("Go to the survival world to access this command!");
+				}
 		}
 		if(cmd.getName().equalsIgnoreCase("nav")) {
-			//sender.sendMessage("Hello there matty! :-)");
-			//if (args[0].equalsIgnoreCase("menu")) {
 				player.openInventory(Stores.navigator);
-			//}
-		}/* else {
-			sender.sendMessage("command is shop menu");
-		}*/
+		}
 		if(cmd.getName().equalsIgnoreCase("books")) {
 			player.openInventory(Stores.books);
 		}
@@ -164,7 +153,7 @@ public class Example extends JavaPlugin implements Listener {
 	        }*/
 		return false;
 	}
-	private static void printWarnAndDisable(String... messages)
+	public static void printWarnAndDisable(String... messages)
 	{
 		StringBuffer buffer = new StringBuffer("\n ");
 		String[] arraryOfString = messages;

@@ -3,9 +3,9 @@ main: me.Markyroson.MarkyCraft.Example
 version: 1.0
 depend: [Vault]
 commands:
-    mcshop:
+    shop:
         description: Brings up shop GUI
     nav:
-        description: Base command
+        description: Brings up navigator
     books:
         description: Brings up books GUI

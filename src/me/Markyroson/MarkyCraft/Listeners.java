@@ -5,10 +5,8 @@ import java.util.UUID;
 
 import me.Markyroson.MarkyCraft.lib.Books;
 import me.Markyroson.MarkyCraft.lib.Names;
-//import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.ChatColor;
-//import org.bukkit.Bukkit;
 import org.bukkit.Material;
 //import org.bukkit.World;
 import org.bukkit.entity.Monster;
@@ -22,15 +20,12 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 //import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.BookMeta;
-//import org.bukkit.plugin.RegisteredServiceProvider;
+//import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class Listeners implements Listener {
 
 	private Example plugin = Example.getInstance();
-	//private Economy econ = null;
-	//private Example ex;
 
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
@@ -49,12 +44,24 @@ public class Listeners implements Listener {
 		if (e.getEntity() instanceof Monster) {
 			if (e.getEntity().getKiller() instanceof Player) {
 				Player p = e.getEntity().getKiller();
-				plugin.getApi().giveSilver(p, 200);
+				//plugin.getApi().giveSilver(p, 200);
+				EconomyResponse r = Example.econ.depositPlayer(p, 200);
+				if(r.transactionSuccess()) {
+	            	p.sendMessage(String.format("You killed a monster! Good job! :-) %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
+	            } else {
+	                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
+	            }
 			}
 		} else if (e.getEntity() instanceof Villager) {
 			if (e.getEntity().getKiller() instanceof Player) {
 				Player p = e.getEntity().getKiller();
-				plugin.getApi().takeSilver(p, 200);
+				//plugin.getApi().takeSilver(p, 200);
+				EconomyResponse r = Example.econ.withdrawPlayer(p, 200);
+				if(r.transactionSuccess()) {
+	            	p.sendMessage(String.format("You killed a villager! :-( That will cost you %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
+	            } else {
+	                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
+	            }
 			}
 		}
 	}
@@ -104,7 +111,6 @@ public class Listeners implements Listener {
 		                    	p.sendMessage("You don't have enough apples to sell!");
 		                    }
 	                    }
-				//}
 						}
 					}
 				//Water Bucket
@@ -568,13 +574,7 @@ public class Listeners implements Listener {
 					&& item.getItemMeta().hasDisplayName()) {
 				if(item.getItemMeta().getDisplayName().equals(Names.Items.Books.WebBook.name)) {
 					Player p = (Player) event.getWhoClicked();
-					ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
-			        BookMeta bm = (BookMeta) book.getItemMeta();
-			        bm.addPage(Books.Setup.WebBook.Pages.page1, Books.Setup.WebBook.Pages.page2, Books.Setup.WebBook.Pages.page3, Books.Setup.WebBook.Pages.page4);	//set book pages
-			                bm.setAuthor(Books.Setup.WebBook.Author.name);	//set book author
-			                bm.setTitle(Books.Setup.WebBook.Title.name);	//set book name
-			                book.setItemMeta(bm);
-			        p.getInventory().addItem(book);
+					Api.createBook(Material.WRITTEN_BOOK, Books.Setup.WebBook.Author.name, Books.Setup.WebBook.Title.name, p, Books.Setup.WebBook.Pages.page1, Books.Setup.WebBook.Pages.page2, Books.Setup.WebBook.Pages.page3, Books.Setup.WebBook.Pages.page4);
 				}
 			}
 		}
@@ -592,6 +592,7 @@ public class Listeners implements Listener {
 			}​
 		}​
 	}*/
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onTeleport(PlayerChangedWorldEvent e) {
 		Player p = e.getPlayer();
