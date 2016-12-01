@@ -1,7 +1,6 @@
 package me.Markyroson.MarkyCraft;
 
 import me.Markyroson.MarkyCraft.lib.Names;
-//import me.Markyroson.MarkyCraft.lib.Names.Items;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
