@@ -8,7 +8,6 @@ import me.Markyroson.MarkyCraft.lib.Names;
 import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-//import org.bukkit.World;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
