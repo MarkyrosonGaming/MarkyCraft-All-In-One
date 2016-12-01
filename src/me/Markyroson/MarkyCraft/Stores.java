@@ -5,8 +5,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 
-/**@author Markyroson
- */
+/**
+* @author Markyroson
+*/
 public class Stores {
 	public static Inventory shop;	//Creates shop inventory
 	public static Inventory navigator; //Creates server navigator inventory
@@ -62,6 +63,9 @@ public class Stores {
 			books.setItem(0, Api.createItem(Material.BOOK, 1, 0, webBook.name, webBook.lore, null));
 		}
 	}
+	/**
+	* Register shop, server navigator, and books
+	*/
 	public static void register()
 	{
 		Setups.Shop();
