@@ -51,13 +51,19 @@ public class Stores {
 			shop.setItem(13, Api.createItem(Material.BEDROCK, 1, 0, bedrock.name, bedrock.lore, null));
 		}
 		@SuppressWarnings("static-access")
-		public static void ServerNavigator()	//ServerNavigator setup
+		/**
+		* This method is in charge of setting up Server Navigator
+		*/
+		public static void ServerNavigator()
 		{
 			navigator = Bukkit.createInventory(null, Names.Info.ServerNavigator.size, Names.Info.ServerNavigator.name);
 			navigator.setItem(0, Api.createItem(Material.BAKED_POTATO, 1, 0, hubpotato.name, hubpotato.lore, null));
 		}
 		@SuppressWarnings("static-access")
-		public static void Books()	//Books setup
+		/**
+		* This method is in charge of setting up books
+		*/
+		public static void Books()
 		{
 			books = Bukkit.createInventory(null, Names.Info.Books.size, Names.Info.Books.name);
 			books.setItem(0, Api.createItem(Material.BOOK, 1, 0, webBook.name, webBook.lore, null));
