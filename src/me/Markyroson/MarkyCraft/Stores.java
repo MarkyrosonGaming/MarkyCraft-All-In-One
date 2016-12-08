@@ -9,9 +9,9 @@ import org.bukkit.inventory.Inventory;
 * @author Markyroson
 */
 public class Stores {
-	public static Inventory shop;	//Creates shop inventory
-	public static Inventory navigator; //Creates server navigator inventory
-	public static Inventory books;	//Creates books inventory
+	public static Inventory shop;	// Creates shop inventory
+	public static Inventory navigator; // Creates server navigator inventory
+	public static Inventory books;	// Creates books inventory
 	
 	private static Names.Items.Shop.Bedrock bedrock;
 	private static Names.Items.Shop.EndStone endstone;
@@ -32,7 +32,7 @@ public class Stores {
 	public final static class Setups
 	{
 		@SuppressWarnings("static-access")
-		public static void Shop()	//Shop/store setup
+		public static void Shop()	// Shop/store setup
 		{
 			shop = Bukkit.createInventory(null, Names.Info.Shop.size, Names.Info.Shop.name);
 			shop.setItem(0, Api.createItem(Material.APPLE, 1, 0, Names.Items.Shop.Apple.name, Names.Items.Shop.Apple.lore, Names.Items.Shop.Apple.lore2));
