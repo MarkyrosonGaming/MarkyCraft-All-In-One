@@ -1,5 +1,6 @@
 package me.Markyroson.MarkyCraft.lib;
 
+//TODO: Clean up this file (maybe use enum of some sort?)
 public class Books {
 	public static final class Setup
 	{
