@@ -16,15 +16,17 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+//TODO: Clean up code
 @SuppressWarnings("unused")
 public class Example extends JavaPlugin implements Listener {
 	
-    private Api api;
-	private static Example plugin;
+    	private Api api;
+	private static Example plugin;	// reference to plugin
 	private HashMap<UUID, Integer> money = new HashMap<>();
+	//TODO: Sort out two references to same thing
 	private static Example instance;
 	public static Economy econ = null;
-	private static final Logger log = Logger.getLogger("Minecraft");
+	private static final Logger log = Logger.getLogger("Minecraft");	// set up logger
 	private static Names.Permissons perms;
 	
 	public void onEnable() {
@@ -110,20 +112,29 @@ public class Example extends JavaPlugin implements Listener {
 	    return plugin;
 	}
 	
+	/**
+	* Get reference to API
+	* @returns API reference
+	*/
 	public Api getApi(){
 		return api;
 	}
 	
-    public HashMap<UUID, Integer> getMoney() {
+	/**
+	* Get money
+	* @returns Money
+	*/
+    	public HashMap<UUID, Integer> getMoney() {
 	    return money;
 	}
 
 	@SuppressWarnings("static-access")
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 	
+	    // If not an instance of player, do not proceed
 	    if(!(sender instanceof Player)) {
 		    return false;
-		}
+	    }
 	
 		Player player = (Player) sender;
 		
@@ -153,6 +164,10 @@ public class Example extends JavaPlugin implements Listener {
 	        }*/
 		return false;
 	}
+	/**
+	* Print a warning in console and disable plugin
+	* @param messages Message to display
+	*/
 	public static void printWarnAndDisable(String... messages)
 	{
 		StringBuffer buffer = new StringBuffer("\n ");
@@ -173,16 +188,19 @@ public class Example extends JavaPlugin implements Listener {
 		catch (InterruptedException localInteruptedException) {}
 		instance.setEnabled(false);
 	}
+	
+	/**
+	* Set up economy
+	*/
 	private boolean setupEconomy() {
-        if (getServer().getPluginManager().getPlugin("Vault") == null) {
-            return false;
-        }
-        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
-        if (rsp == null) {
-            return false;
-        }
-        econ = rsp.getProvider();
-        return econ != null;
-    }
-
-}
+		if (getServer().getPluginManager().getPlugin("Vault") == null) {
+		    return false;
+		}
+		RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+		if (rsp == null) {
+		    return false;
+		}
+		econ = rsp.getProvider();
+		return econ != null;
+    	}
+}	// end of class

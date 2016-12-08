@@ -6,7 +6,11 @@ import java.util.regex.Pattern;
 import org.bukkit.Bukkit;
 
 public class VersionUtils {
-	public static String getBukkitVersion()	//get the version of installed bukkit used
+	/**
+	* This method is responsible for getting the version of bukkit installed
+	* @returns null if could not find version, otherwise the version of bukkit installed
+	*/
+	public static String getBukkitVersion()
 	{
 		Matcher matcher = Pattern.compile("v\\d+_\\d+_R\\d+").matcher(Bukkit.getServer().getClass().getPackage().getName());
 		if (matcher.find()) {
@@ -14,7 +18,11 @@ public class VersionUtils {
 		}
 		return null;
 	}
-	public static String getMinecraftVersion()	//get the version of minecraft used
+	/**
+	* This method returns the version of Minecraft used
+	* @returns null if Minecraft version is not found, otherwise returns Minecraft version
+	*/
+	public static String getMinecraftVersion()
 	{
 		Matcher matcher = Pattern.compile("(\\(MC: ) )[\\d\\.]+) (\\))").matcher(Bukkit.getVersion());
 		if (matcher.find()) {

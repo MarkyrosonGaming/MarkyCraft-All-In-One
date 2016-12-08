@@ -9,9 +9,9 @@ import org.bukkit.inventory.Inventory;
 * @author Markyroson
 */
 public class Stores {
-	public static Inventory shop;	//Creates shop inventory
-	public static Inventory navigator; //Creates server navigator inventory
-	public static Inventory books;	//Creates books inventory
+	public static Inventory shop;	// Creates shop inventory
+	public static Inventory navigator; // Creates server navigator inventory
+	public static Inventory books;	// Creates books inventory
 	
 	private static Names.Items.Shop.Bedrock bedrock;
 	private static Names.Items.Shop.EndStone endstone;
@@ -32,7 +32,7 @@ public class Stores {
 	public final static class Setups
 	{
 		@SuppressWarnings("static-access")
-		public static void Shop()	//Shop/store setup
+		public static void Shop()	// Shop/store setup
 		{
 			shop = Bukkit.createInventory(null, Names.Info.Shop.size, Names.Info.Shop.name);
 			shop.setItem(0, Api.createItem(Material.APPLE, 1, 0, Names.Items.Shop.Apple.name, Names.Items.Shop.Apple.lore, Names.Items.Shop.Apple.lore2));
@@ -51,13 +51,19 @@ public class Stores {
 			shop.setItem(13, Api.createItem(Material.BEDROCK, 1, 0, bedrock.name, bedrock.lore, null));
 		}
 		@SuppressWarnings("static-access")
-		public static void ServerNavigator()	//ServerNavigator setup
+		/**
+		* This method is in charge of setting up Server Navigator
+		*/
+		public static void ServerNavigator()
 		{
 			navigator = Bukkit.createInventory(null, Names.Info.ServerNavigator.size, Names.Info.ServerNavigator.name);
 			navigator.setItem(0, Api.createItem(Material.BAKED_POTATO, 1, 0, hubpotato.name, hubpotato.lore, null));
 		}
 		@SuppressWarnings("static-access")
-		public static void Books()	//Books setup
+		/**
+		* This method is in charge of setting up books
+		*/
+		public static void Books()
 		{
 			books = Bukkit.createInventory(null, Names.Info.Books.size, Names.Info.Books.name);
 			books.setItem(0, Api.createItem(Material.BOOK, 1, 0, webBook.name, webBook.lore, null));
