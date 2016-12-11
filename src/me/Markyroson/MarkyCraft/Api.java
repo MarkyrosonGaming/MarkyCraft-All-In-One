@@ -66,6 +66,15 @@ public class Api {
 		return item;
 	}
 	
+	public static ItemStack createItem(Material material, int amount, int shrt, String displayname, String lore) {
+		ItemStack item = new ItemStack(material, amount, (short) shrt);
+		ItemMeta meta = item.getItemMeta();
+		meta.setDisplayName(displayname);
+		meta.setLore(Arrays.asList(lore));
+		item.setItemMeta(meta);
+		return item;
+	}
+	
 	/**
 	 * 
 	 * @param material Material.WRITTEN_BOOK
@@ -81,7 +90,7 @@ public class Api {
 	public static ItemStack createBook(Material material, String Author, String Title, Player p, String page1, String page2, String page3, String page4) {
 		ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
 	    BookMeta bm = (BookMeta) book.getItemMeta();
-	    bm.addPage(page1, page2, page4);	//set book pages
+	    bm.addPage(page1, page2, page3, page4);	//set book pages
 	            bm.setAuthor(Author);	//set book author
 	            bm.setTitle(Title);	//set book name
 	            book.setItemMeta(bm);
