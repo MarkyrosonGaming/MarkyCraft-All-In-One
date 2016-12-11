@@ -260,7 +260,7 @@ public class Names {
 			}
 		}
 	}
-	public static final class Permissons
+	public static class Permissons
 	{
 		public static final String activate_shop_gui = "activate_shop_gui";
 	}
