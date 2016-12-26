@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-public class Example extends Base implements Listener {
+public class Main extends Base implements Listener {
 	private HashMap<UUID, Integer> money = new HashMap<>();
 	
 	public void onEnable() {
@@ -18,7 +18,7 @@ public class Example extends Base implements Listener {
 		api = new Api();
 	}
 	
-	public static Example getInstance() {
+	public static Main getInstance() {
 	    return instance;
 	}
 	

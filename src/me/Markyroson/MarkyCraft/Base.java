@@ -11,7 +11,7 @@ import net.milkbowl.vault.economy.Economy;
 public class Base extends JavaPlugin {
 	protected static final Logger log = Logger.getLogger("Minecraft");	// set up logger
 	protected Api api;
-	protected static Example instance;	// reference to plugin
+	protected static Main instance;	// reference to plugin
 	public static Economy econ = null;
 	/**
 	* Get reference to API
