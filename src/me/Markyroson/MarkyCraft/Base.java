@@ -21,7 +21,6 @@ public class Base extends JavaPlugin {
 		return api;
 	}
 	public void onEnable() {
-		//instance = this;
 		 if (!setupEconomy() ) {
 	            log.severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
 	            getServer().getPluginManager().disablePlugin(this);
@@ -112,8 +111,6 @@ public class Base extends JavaPlugin {
 			
 			return;
 		}*/
-	   // plugin = this;	//make plugin equal to this
-	    //api = new Api();
 		getServer().getPluginManager().registerEvents(new Listeners(), this);	//register Listener events
 		Stores.register();	//register stores/GUIs
 		getConfig().options().copyDefaults(true);	//copies defaults to config
