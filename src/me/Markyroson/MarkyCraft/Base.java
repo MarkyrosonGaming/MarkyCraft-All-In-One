@@ -21,14 +21,13 @@ public class Base extends JavaPlugin {
 		return api;
 	}
 	public void onEnable() {
-		//instance = this;
 		 if (!setupEconomy() ) {
 	            log.severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
 	            getServer().getPluginManager().disablePlugin(this);
 	            return;
 	        }
 		String version = VersionUtils.getBukkitVersion();
-		if(version == null)
+		/*if(version == null)
 		{
 			version = VersionUtils.getMinecraftVersion();
 			if ("1.7.10".equals(version))
@@ -42,6 +41,10 @@ public class Base extends JavaPlugin {
 			else if ("1.8.3".equals(version))
 			{
 				version = "v1_8_3_R2";
+			}
+			else if("1.11".equals(version))
+			{
+				version = "v1_11_R1";
 			}
 			else
 			{
@@ -107,9 +110,7 @@ public class Base extends JavaPlugin {
 				"******************************************************" });
 			
 			return;
-		}
-	   // plugin = this;	//make plugin equal to this
-	    //api = new Api();
+		}*/
 		getServer().getPluginManager().registerEvents(new Listeners(), this);	//register Listener events
 		Stores.register();	//register stores/GUIs
 		getConfig().options().copyDefaults(true);	//copies defaults to config
