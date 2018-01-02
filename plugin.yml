@@ -1,6 +1,6 @@
 name: MarkyCraft
-main: me.Markyroson.MarkyCraft.Example
-version: 1.0b
+main: me.Markyroson.MarkyCraft.Main
+version: 1.1
 depend: [Vault]
 commands:
     shop:

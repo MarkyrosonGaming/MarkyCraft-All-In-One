@@ -20,7 +20,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class Listeners implements Listener {
 
-	private Example plugin = Example.getInstance();
+	private Main plugin = Main.getInstance();
 
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
@@ -40,9 +40,9 @@ public class Listeners implements Listener {
 			if (e.getEntity().getKiller() instanceof Player) {
 				Player p = e.getEntity().getKiller();
 				//plugin.getApi().giveSilver(p, 200);
-				EconomyResponse r = Example.econ.depositPlayer(p, 200);
+				EconomyResponse r = Main.econ.depositPlayer(p, 200);
 				if(r.transactionSuccess()) {
-	            	p.sendMessage(String.format("You killed a monster! Good job! :-) %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
+	            	p.sendMessage(String.format("You killed a monster! Good job! :-) %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
 	            } else {
 	                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 	            }
@@ -51,9 +51,9 @@ public class Listeners implements Listener {
 			if (e.getEntity().getKiller() instanceof Player) {
 				Player p = e.getEntity().getKiller();
 				//plugin.getApi().takeSilver(p, 200);
-				EconomyResponse r = Example.econ.withdrawPlayer(p, 200);
+				EconomyResponse r = Main.econ.withdrawPlayer(p, 200);
 				if(r.transactionSuccess()) {
-	            	p.sendMessage(String.format("You killed a villager! :-( That will cost you %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
+	            	p.sendMessage(String.format("You killed a villager! :-( That will cost you %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
 	            } else {
 	                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 	            }
@@ -73,15 +73,15 @@ public class Listeners implements Listener {
 					&& item.getItemMeta().hasDisplayName()) {
 				if (item.getItemMeta().getDisplayName().equals(ChatColor.DARK_AQUA + "Apple")) {
 					Player p = (Player) event.getWhoClicked();
-					Double balance = Example.econ.getBalance(p);	//adds ability to check if player has enough $ to prevent negative balance
+					Double balance = Main.econ.getBalance(p);	//adds ability to check if player has enough $ to prevent negative balance
 					if (balance >= 5){
 					ItemStack apple = new ItemStack(Material.APPLE, 1);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
-						    EconomyResponse r = Example.econ.withdrawPlayer(p, 5);
+						    EconomyResponse r = Main.econ.withdrawPlayer(p, 5);
 				            if(r.transactionSuccess()) {
 				                p.getInventory().addItem(apple);	//give player created item stack
 				                p.updateInventory();	//update the player inventory
-				            	p.sendMessage(String.format("You bought one apple for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
+				            	p.sendMessage(String.format("You bought one apple for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
 				            } else {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
@@ -91,12 +91,12 @@ public class Listeners implements Listener {
 					}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.APPLE)) {
-	                        	    EconomyResponse r = Example.econ.depositPlayer(p, 5);
+	                        	    EconomyResponse r = Main.econ.depositPlayer(p, 5);
 	                        	    if(r.transactionSuccess()) {
 	                        	    	p.getInventory().removeItem(new ItemStack[] {
 	                                            new ItemStack(Material.APPLE, 1) });
 	                        	    	p.updateInventory();	//not sure why this is deprecated as it is essential to inventory removal
-	                        	    	p.sendMessage(String.format("You sold one apple for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));
+	                        	    	p.sendMessage(String.format("You sold one apple for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));
 	                        	    } else {
 	                        	    	p.sendMessage(String.format("An error occured: %s", r.errorMessage));
 	                        	    }                           
@@ -110,15 +110,15 @@ public class Listeners implements Listener {
 				//Water Bucket
 				if (item.getItemMeta().getDisplayName().equals(ChatColor.AQUA + "Water Bucket")) {
 					Player p = (Player) event.getWhoClicked();
-					Double balance = Example.econ.getBalance(p);
+					Double balance = Main.econ.getBalance(p);
 					if (balance >= 50){
 					ItemStack waterBucket = new ItemStack(Material.WATER_BUCKET, 1);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
-						    EconomyResponse r = Example.econ.withdrawPlayer(p, 50);
+						    EconomyResponse r = Main.econ.withdrawPlayer(p, 50);
 				            if(r.transactionSuccess()) {
 				                p.getInventory().addItem(waterBucket);	//give player created item stack
 				                p.updateInventory();	//update the player inventory
-				            	p.sendMessage(String.format("You bought one Water Bucket for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
+				            	p.sendMessage(String.format("You bought one Water Bucket for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
 				            } else {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
@@ -135,15 +135,15 @@ public class Listeners implements Listener {
 				//Lava Water
 				if (item.getItemMeta().getDisplayName().equals(ChatColor.AQUA + "Lava Bucket")) {
 					Player p = (Player) event.getWhoClicked();
-					Double balance = Example.econ.getBalance(p);
+					Double balance = Main.econ.getBalance(p);
 					if (balance >= 75){
 					ItemStack lavaBucket = new ItemStack(Material.LAVA_BUCKET, 1);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
-						    EconomyResponse r = Example.econ.withdrawPlayer(p, 75);
+						    EconomyResponse r = Main.econ.withdrawPlayer(p, 75);
 				            if(r.transactionSuccess()) {
 				                p.getInventory().addItem(lavaBucket);	//give player created item stack
 				                p.updateInventory();	//update the player inventory
-				            	p.sendMessage(String.format("You bought one Lava Bucket for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
+				            	p.sendMessage(String.format("You bought one Lava Bucket for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
 				            } else {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
@@ -158,15 +158,15 @@ public class Listeners implements Listener {
 				//Obsidian
 				if (item.getItemMeta().getDisplayName().equals(ChatColor.AQUA + "Obsidian")) {
 					Player p = (Player) event.getWhoClicked();
-					Double balance = Example.econ.getBalance(p);
+					Double balance = Main.econ.getBalance(p);
 					if (balance >= 175){
 					ItemStack obsidian = new ItemStack(Material.OBSIDIAN, 64);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
-						    EconomyResponse r = Example.econ.withdrawPlayer(p, 175);
+						    EconomyResponse r = Main.econ.withdrawPlayer(p, 175);
 				            if(r.transactionSuccess()) {
 				                p.getInventory().addItem(obsidian);	//give player created item stack
 				                p.updateInventory();	//update the player inventory
-				            	p.sendMessage(String.format("You bought one Lava Bucket for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
+				            	p.sendMessage(String.format("You bought one Lava Bucket for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
 				            } else {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
@@ -174,12 +174,12 @@ public class Listeners implements Listener {
 				}
 	                    if (event.getClick().isRightClick()) {
 	                    	 if (p.getInventory().contains(Material.OBSIDIAN)) {
-	                        	    EconomyResponse r = Example.econ.depositPlayer(p, 125);
+	                        	    EconomyResponse r = Main.econ.depositPlayer(p, 125);
 	                        	    if(r.transactionSuccess()) {
 	                        	    	p.getInventory().removeItem(new ItemStack[] {
 	                                            new ItemStack(Material.OBSIDIAN, 64) });
 	                        	    	p.updateInventory();	//not sure why this is deprecated as it is essential to inventory removal
-	                        	    	p.sendMessage(String.format("You sold 64 Obsidian for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));
+	                        	    	p.sendMessage(String.format("You sold 64 Obsidian for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));
 	                        	    } else {
 	                        	    	p.sendMessage(String.format("An error occured: %s", r.errorMessage));
 	                        	    }                           
@@ -192,15 +192,15 @@ public class Listeners implements Listener {
 				//EndStone
 				if (item.getItemMeta().getDisplayName().equals(ChatColor.AQUA + "EndStone")) {
 					Player p = (Player) event.getWhoClicked();
-					Double balance = Example.econ.getBalance(p);
+					Double balance = Main.econ.getBalance(p);
 					if (balance >= 150){
 					ItemStack endStone = new ItemStack(Material.ENDER_STONE, 64);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
-						    EconomyResponse r = Example.econ.withdrawPlayer(p, 150);
+						    EconomyResponse r = Main.econ.withdrawPlayer(p, 150);
 				            if(r.transactionSuccess()) {
 				                p.getInventory().addItem(endStone);	//give player created item stack
 				                p.updateInventory();	//update the player inventory
-				            	p.sendMessage(String.format("You bought 64 End Stone for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
+				            	p.sendMessage(String.format("You bought 64 End Stone for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
 				            } else {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
@@ -208,12 +208,12 @@ public class Listeners implements Listener {
 				}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.ENDER_STONE)) {
-		                        	    EconomyResponse r = Example.econ.depositPlayer(p, 50);
+		                        	    EconomyResponse r = Main.econ.depositPlayer(p, 50);
 		                        	    if(r.transactionSuccess()) {
 		                        	    	p.getInventory().removeItem(new ItemStack[] {
 		                                            new ItemStack(Material.ENDER_STONE, 32) });
 		                        	    	p.updateInventory();	//not sure why this is deprecated as it is essential to inventory removal
-		                        	    	p.sendMessage(String.format("You sold 32 End Stone for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));
+		                        	    	p.sendMessage(String.format("You sold 32 End Stone for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));
 		                        	    } else {
 		                        	    	p.sendMessage(String.format("An error occured: %s", r.errorMessage));
 		                        	    }                           
@@ -226,15 +226,15 @@ public class Listeners implements Listener {
 				//Netherrack
 				if (item.getItemMeta().getDisplayName().equals(ChatColor.AQUA + "Netherrack")) {
 					Player p = (Player) event.getWhoClicked();
-					Double balance = Example.econ.getBalance(p);
+					Double balance = Main.econ.getBalance(p);
 					if (balance >= 62.50){
 					ItemStack netherRack = new ItemStack(Material.NETHERRACK, 64);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
-						    EconomyResponse r = Example.econ.withdrawPlayer(p, 62.50);
+						    EconomyResponse r = Main.econ.withdrawPlayer(p, 62.50);
 				            if(r.transactionSuccess()) {
 				                p.getInventory().addItem(netherRack);	//give player created item stack
 				                p.updateInventory();	//update the player inventory
-				            	p.sendMessage(String.format("You bought 64 Netherrack for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
+				            	p.sendMessage(String.format("You bought 64 Netherrack for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
 				            } else {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
@@ -242,12 +242,12 @@ public class Listeners implements Listener {
 				}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.NETHERRACK)) {
-		                        	    EconomyResponse r = Example.econ.depositPlayer(p, 25);
+		                        	    EconomyResponse r = Main.econ.depositPlayer(p, 25);
 		                        	    if(r.transactionSuccess()) {
 		                        	    	p.getInventory().removeItem(new ItemStack[] {
 		                                            new ItemStack(Material.NETHERRACK, 64) });
 		                        	    	p.updateInventory();	//not sure why this is deprecated as it is essential to inventory removal
-		                        	    	p.sendMessage(String.format("You sold 64 Netherrack for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));
+		                        	    	p.sendMessage(String.format("You sold 64 Netherrack for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));
 		                        	    } else {
 		                        	    	p.sendMessage(String.format("An error occured: %s", r.errorMessage));
 		                        	    }                           
@@ -260,15 +260,15 @@ public class Listeners implements Listener {
 				//Glowstone
 				if (item.getItemMeta().getDisplayName().equals(ChatColor.AQUA + "Glowstone")) {
 					Player p = (Player) event.getWhoClicked();
-					Double balance = Example.econ.getBalance(p);
+					Double balance = Main.econ.getBalance(p);
 					if (balance >= 100){
 					ItemStack netherRack = new ItemStack(Material.GLOWSTONE, 16);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
-						    EconomyResponse r = Example.econ.withdrawPlayer(p, 100);
+						    EconomyResponse r = Main.econ.withdrawPlayer(p, 100);
 				            if(r.transactionSuccess()) {
 				                p.getInventory().addItem(netherRack);	//give player created item stack
 				                p.updateInventory();	//update the player inventory
-				            	p.sendMessage(String.format("You bought 16 Glowstone for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
+				            	p.sendMessage(String.format("You bought 16 Glowstone for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
 				            } else {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
@@ -276,12 +276,12 @@ public class Listeners implements Listener {
 				}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.GLOWSTONE)) {
-		                        	    EconomyResponse r = Example.econ.depositPlayer(p, 10);
+		                        	    EconomyResponse r = Main.econ.depositPlayer(p, 10);
 		                        	    if(r.transactionSuccess()) {
 		                        	    	p.getInventory().removeItem(new ItemStack[] {
 		                                            new ItemStack(Material.GLOWSTONE, 16) });
 		                        	    	p.updateInventory();	//not sure why this is deprecated as it is essential to inventory removal
-		                        	    	p.sendMessage(String.format("You sold 16 Glowstone for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));
+		                        	    	p.sendMessage(String.format("You sold 16 Glowstone for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));
 		                        	    } else {
 		                        	    	p.sendMessage(String.format("An error occured: %s", r.errorMessage));
 		                        	    }                           
@@ -294,15 +294,15 @@ public class Listeners implements Listener {
 				//Gravel
 				if (item.getItemMeta().getDisplayName().equals(ChatColor.AQUA + "Gravel")) {
 					Player p = (Player) event.getWhoClicked();
-					Double balance = Example.econ.getBalance(p);
+					Double balance = Main.econ.getBalance(p);
 					if (balance >= 75){
 					ItemStack netherRack = new ItemStack(Material.GRAVEL, 64);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
-						    EconomyResponse r = Example.econ.withdrawPlayer(p, 75);
+						    EconomyResponse r = Main.econ.withdrawPlayer(p, 75);
 				            if(r.transactionSuccess()) {
 				                p.getInventory().addItem(netherRack);	//give player created item stack
 				                p.updateInventory();	//update the player inventory
-				            	p.sendMessage(String.format("You bought 64 Gravel for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
+				            	p.sendMessage(String.format("You bought 64 Gravel for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
 				            } else {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
@@ -310,12 +310,12 @@ public class Listeners implements Listener {
 				}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.GRAVEL)) {
-		                        	    EconomyResponse r = Example.econ.depositPlayer(p, 12.50);
+		                        	    EconomyResponse r = Main.econ.depositPlayer(p, 12.50);
 		                        	    if(r.transactionSuccess()) {
 		                        	    	p.getInventory().removeItem(new ItemStack[] {
 		                                            new ItemStack(Material.GRAVEL, 64) });
 		                        	    	p.updateInventory();	//not sure why this is deprecated as it is essential to inventory removal
-		                        	    	p.sendMessage(String.format("You sold 64 Gravel for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));
+		                        	    	p.sendMessage(String.format("You sold 64 Gravel for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));
 		                        	    } else {
 		                        	    	p.sendMessage(String.format("An error occured: %s", r.errorMessage));
 		                        	    }                           
@@ -328,15 +328,15 @@ public class Listeners implements Listener {
 				//Sand
 				if (item.getItemMeta().getDisplayName().equals(ChatColor.AQUA + "Sand")) {
 					Player p = (Player) event.getWhoClicked();
-					Double balance = Example.econ.getBalance(p);
+					Double balance = Main.econ.getBalance(p);
 					if (balance >= 75){
 					ItemStack netherRack = new ItemStack(Material.SAND, 64);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
-						    EconomyResponse r = Example.econ.withdrawPlayer(p, 75);
+						    EconomyResponse r = Main.econ.withdrawPlayer(p, 75);
 				            if(r.transactionSuccess()) {
 				                p.getInventory().addItem(netherRack);	//give player created item stack
 				                p.updateInventory();	//update the player inventory
-				            	p.sendMessage(String.format("You bought 64 Sand for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
+				            	p.sendMessage(String.format("You bought 64 Sand for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
 				            } else {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
@@ -344,12 +344,12 @@ public class Listeners implements Listener {
 				}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.SAND)) {
-		                        	    EconomyResponse r = Example.econ.depositPlayer(p, 17.50);
+		                        	    EconomyResponse r = Main.econ.depositPlayer(p, 17.50);
 		                        	    if(r.transactionSuccess()) {
 		                        	    	p.getInventory().removeItem(new ItemStack[] {
 		                                            new ItemStack(Material.SAND, 64) });
 		                        	    	p.updateInventory();	//not sure why this is deprecated as it is essential to inventory removal
-		                        	    	p.sendMessage(String.format("You sold 64 Sand for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));
+		                        	    	p.sendMessage(String.format("You sold 64 Sand for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));
 		                        	    } else {
 		                        	    	p.sendMessage(String.format("An error occured: %s", r.errorMessage));
 		                        	    }                           
@@ -362,15 +362,15 @@ public class Listeners implements Listener {
 				//Cobblestone
 				if (item.getItemMeta().getDisplayName().equals(ChatColor.AQUA + "Cobblestone")) {
 					Player p = (Player) event.getWhoClicked();
-					Double balance = Example.econ.getBalance(p);
+					Double balance = Main.econ.getBalance(p);
 					if (balance >= 100){
 					ItemStack netherRack = new ItemStack(Material.COBBLESTONE, 64);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
-						    EconomyResponse r = Example.econ.withdrawPlayer(p, 100);
+						    EconomyResponse r = Main.econ.withdrawPlayer(p, 100);
 				            if(r.transactionSuccess()) {
 				                p.getInventory().addItem(netherRack);	//give player created item stack
 				                p.updateInventory();	//update the player inventory
-				            	p.sendMessage(String.format("You bought 64 Cobblestone for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
+				            	p.sendMessage(String.format("You bought 64 Cobblestone for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
 				            } else {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
@@ -378,12 +378,12 @@ public class Listeners implements Listener {
 				}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.COBBLESTONE)) {
-		                        	    EconomyResponse r = Example.econ.depositPlayer(p, 25);
+		                        	    EconomyResponse r = Main.econ.depositPlayer(p, 25);
 		                        	    if(r.transactionSuccess()) {
 		                        	    	p.getInventory().removeItem(new ItemStack[] {
 		                                            new ItemStack(Material.COBBLESTONE, 64) });
 		                        	    	p.updateInventory();	//not sure why this is deprecated as it is essential to inventory removal
-		                        	    	p.sendMessage(String.format("You sold 64 Gravel for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));
+		                        	    	p.sendMessage(String.format("You sold 64 Gravel for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));
 		                        	    } else {
 		                        	    	p.sendMessage(String.format("An error occured: %s", r.errorMessage));
 		                        	    }                           
@@ -396,15 +396,15 @@ public class Listeners implements Listener {
 				//Stone
 				if (item.getItemMeta().getDisplayName().equals(ChatColor.AQUA + "Stone")) {
 					Player p = (Player) event.getWhoClicked();
-					Double balance = Example.econ.getBalance(p);
+					Double balance = Main.econ.getBalance(p);
 					if (balance >= 137.50){
 					ItemStack netherRack = new ItemStack(Material.STONE, 64);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
-						    EconomyResponse r = Example.econ.withdrawPlayer(p, 137.50);
+						    EconomyResponse r = Main.econ.withdrawPlayer(p, 137.50);
 				            if(r.transactionSuccess()) {
 				                p.getInventory().addItem(netherRack);	//give player created item stack
 				                p.updateInventory();	//update the player inventory
-				            	p.sendMessage(String.format("You bought 64 Stone for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
+				            	p.sendMessage(String.format("You bought 64 Stone for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
 				            } else {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
@@ -412,12 +412,12 @@ public class Listeners implements Listener {
 				}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.STONE)) {
-		                        	    EconomyResponse r = Example.econ.depositPlayer(p, 37.50);
+		                        	    EconomyResponse r = Main.econ.depositPlayer(p, 37.50);
 		                        	    if(r.transactionSuccess()) {
 		                        	    	p.getInventory().removeItem(new ItemStack[] {
 		                                            new ItemStack(Material.STONE, 64) });
 		                        	    	p.updateInventory();	//not sure why this is deprecated as it is essential to inventory removal
-		                        	    	p.sendMessage(String.format("You sold 64 Stone for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));
+		                        	    	p.sendMessage(String.format("You sold 64 Stone for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));
 		                        	    } else {
 		                        	    	p.sendMessage(String.format("An error occured: %s", r.errorMessage));
 		                        	    }                           
@@ -430,15 +430,15 @@ public class Listeners implements Listener {
 				//Dirt
 				if (item.getItemMeta().getDisplayName().equals(ChatColor.AQUA + "Dirt")) {
 					Player p = (Player) event.getWhoClicked();
-					Double balance = Example.econ.getBalance(p);
+					Double balance = Main.econ.getBalance(p);
 					if (balance >= 75){
 					ItemStack netherRack = new ItemStack(Material.DIRT, 64);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
-						    EconomyResponse r = Example.econ.withdrawPlayer(p, 75);
+						    EconomyResponse r = Main.econ.withdrawPlayer(p, 75);
 				            if(r.transactionSuccess()) {
 				                p.getInventory().addItem(netherRack);	//give player created item stack
 				                p.updateInventory();	//update the player inventory
-				            	p.sendMessage(String.format("You bought 64 Dirt for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
+				            	p.sendMessage(String.format("You bought 64 Dirt for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
 				            } else {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
@@ -446,12 +446,12 @@ public class Listeners implements Listener {
 				}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.DIRT)) {
-		                        	    EconomyResponse r = Example.econ.depositPlayer(p, 75);
+		                        	    EconomyResponse r = Main.econ.depositPlayer(p, 75);
 		                        	    if(r.transactionSuccess()) {
 		                        	    	p.getInventory().removeItem(new ItemStack[] {
 		                                            new ItemStack(Material.DIRT, 64) });
 		                        	    	p.updateInventory();	//not sure why this is deprecated as it is essential to inventory removal
-		                        	    	p.sendMessage(String.format("You sold 64 Dirt for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));
+		                        	    	p.sendMessage(String.format("You sold 64 Dirt for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));
 		                        	    } else {
 		                        	    	p.sendMessage(String.format("An error occured: %s", r.errorMessage));
 		                        	    }                           
@@ -464,15 +464,15 @@ public class Listeners implements Listener {
 				//Grass
 				if (item.getItemMeta().getDisplayName().equals(ChatColor.AQUA + "Grass")) {
 					Player p = (Player) event.getWhoClicked();
-					Double balance = Example.econ.getBalance(p);
+					Double balance = Main.econ.getBalance(p);
 					if (balance >= 75){
 					ItemStack netherRack = new ItemStack(Material.GRASS, 64);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
-						    EconomyResponse r = Example.econ.withdrawPlayer(p, 92.50);
+						    EconomyResponse r = Main.econ.withdrawPlayer(p, 92.50);
 				            if(r.transactionSuccess()) {
 				                p.getInventory().addItem(netherRack);	//give player created item stack
 				                p.updateInventory();	//update the player inventory
-				            	p.sendMessage(String.format("You bought 64 Grass for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
+				            	p.sendMessage(String.format("You bought 64 Grass for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
 				            } else {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
@@ -480,12 +480,12 @@ public class Listeners implements Listener {
 				}
 	                    if (event.getClick().isRightClick()) {
 	                        if (p.getInventory().contains(Material.GRASS)) {
-		                        	    EconomyResponse r = Example.econ.depositPlayer(p, 92.50);
+		                        	    EconomyResponse r = Main.econ.depositPlayer(p, 92.50);
 		                        	    if(r.transactionSuccess()) {
 		                        	    	p.getInventory().removeItem(new ItemStack[] {
 		                                            new ItemStack(Material.GRASS, 64) });
 		                        	    	p.updateInventory();	//not sure why this is deprecated as it is essential to inventory removal
-		                        	    	p.sendMessage(String.format("You sold 64 Grass for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));
+		                        	    	p.sendMessage(String.format("You sold 64 Grass for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));
 		                        	    } else {
 		                        	    	p.sendMessage(String.format("An error occured: %s", r.errorMessage));
 		                        	    }                           
@@ -498,15 +498,15 @@ public class Listeners implements Listener {
 				//Ice
 				if (item.getItemMeta().getDisplayName().equals(ChatColor.AQUA + "Ice")) {
 					Player p = (Player) event.getWhoClicked();
-					Double balance = Example.econ.getBalance(p);
+					Double balance = Main.econ.getBalance(p);
 					if (balance >= 150){
 					ItemStack netherRack = new ItemStack(Material.ICE, 16);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
-						    EconomyResponse r = Example.econ.withdrawPlayer(p, 150);
+						    EconomyResponse r = Main.econ.withdrawPlayer(p, 150);
 				            if(r.transactionSuccess()) {
 				                p.getInventory().addItem(netherRack);	//give player created item stack
 				                p.updateInventory();	//update the player inventory
-				            	p.sendMessage(String.format("You bought 16 Ice for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
+				            	p.sendMessage(String.format("You bought 16 Ice for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
 				            } else {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }
@@ -521,15 +521,15 @@ public class Listeners implements Listener {
 				//Packed Ice
 				if (item.getItemMeta().getDisplayName().equals(ChatColor.AQUA + "PackedIce")) {
 					Player p = (Player) event.getWhoClicked();
-					Double balance = Example.econ.getBalance(p);
+					Double balance = Main.econ.getBalance(p);
 					if (balance >= 75){
 					ItemStack netherRack = new ItemStack(Material.PACKED_ICE, 16);	//create itemstack to give player
 					 if (event.getClick().isLeftClick()) {
-						    EconomyResponse r = Example.econ.withdrawPlayer(p, 75);
+						    EconomyResponse r = Main.econ.withdrawPlayer(p, 75);
 				            if(r.transactionSuccess()) {
 				                p.getInventory().addItem(netherRack);	//give player created item stack
 				                p.updateInventory();	//update the player inventory
-				            	p.sendMessage(String.format("You bought 16 Packed Ice for %s and now have %s", Example.econ.format(r.amount), Example.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
+				            	p.sendMessage(String.format("You bought 16 Packed Ice for %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
 				            } else {
 				                p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
 				            }

@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
-import me.Markyroson.MarkyCraft.Example;
+import me.Markyroson.MarkyCraft.Main;
 
 public class Api {
 /*
@@ -19,7 +19,7 @@ public class Api {
  * UPDATE: As of 27 March 2015 the giveSilver and takeSilver functions have been
  * deprecated and have now been completely moved away from. Mission complete on this front :-)
  */
-	private Example plugin = Example.getInstance();
+	private Main plugin = Main.getInstance();
 /**
  * @deprecated
  * @param p the player
