@@ -1,7 +1,7 @@
 name: MarkyCraft
-main: me.Markyroson.MarkyCraft.Example
-version: 1.0b
-depend: [Vault]
+main: me.Markyroson.MarkyCraft.Main
+version: 1.1
+depend: [Vault, Essentials]
 commands:
     shop:
         description: Brings up shop GUI
