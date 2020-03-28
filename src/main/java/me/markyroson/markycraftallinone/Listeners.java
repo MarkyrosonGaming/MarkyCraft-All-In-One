@@ -357,6 +357,23 @@ public class Listeners implements Listener {
             p.sendMessage(String.format("An error occured: %s", economyResponse.errorMessage));	//send error message
         }
     }
+
+    private void sell(InventoryClickEvent event, ItemStack item, String name, ChatColor color, String techName,
+                      Material type, int amount, Double price, boolean isBuying) {
+        if (item != null && item.getItemMeta().getDisplayName().equals(color + techName)) {
+            Player p = (Player) event.getWhoClicked();
+            Double balance = Main.econ.getBalance(p);
+            if (balance >= 75) {
+                if (event.getClick().isLeftClick())
+                    transact(p, new ItemStack(type, amount), name, price, isBuying);
+            }
+            if (event.getClick().isRightClick()) {
+                if (p.getInventory().contains(type)) {
+                    p.sendMessage("You can't sell " + name + "!");
+                }
+            }
+        }
+    }
     //}
 
     /*@EventHandler
