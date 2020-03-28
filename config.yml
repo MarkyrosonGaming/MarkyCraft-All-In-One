@@ -1,4 +1,0 @@
-# no_perms_message - Message if player has no permission.
-no_perms_message: '&4You do not have permission to do that command!'
-#Cannot be sold in shop message
-no_sell_message: This item cannot be sold in shop

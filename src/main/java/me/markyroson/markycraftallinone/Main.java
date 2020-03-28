@@ -1,10 +1,10 @@
-package me.Markyroson.MarkyCraft;
+package me.markyroson.markycraftallinone;
 
 import java.util.HashMap;
 import java.util.UUID;
 import java.util.logging.Logger;
 
-import me.Markyroson.MarkyCraft.Stores;
+import me.markyroson.markycraftallinone.Stores;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -13,8 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-//TODO: Clean up code
-public class Main extends JavaPlugin implements Listener {
+public final class Main extends JavaPlugin {
 
     private Api api;
     private static Main plugin;    // reference to plugin
@@ -89,11 +88,14 @@ public class Main extends JavaPlugin implements Listener {
      * Set up economy
      */
     private boolean setupEconomy() {
-        if (getServer().getPluginManager().getPlugin("Vault") == null) return false;
-
+        if (getServer().getPluginManager().getPlugin("Vault") == null) {
+            return false;
+        }
         RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
-        if (rsp == null) return false;
-
-        return rsp.getProvider() != null;
+        if (rsp == null) {
+            return false;
+        }
+        econ = rsp.getProvider();
+        return true;
     }
-}    // end of class
+}

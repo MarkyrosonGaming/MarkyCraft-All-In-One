@@ -1,0 +1,13 @@
+name: MarkyCraft-All-In-One
+version: @version@
+main: me.markyroson.markycraftallinone.Main
+api-version: 1.15
+depend: [Vault, Essentials]
+authors: [Markyroson]
+commands:
+  shop:
+    description: Brings up shop GUI
+  nav:
+    description: Brings up navigator
+  books:
+    description: Brings up books GUI
