@@ -59,9 +59,7 @@ public class Api {
      * @param displayname name of material
      * @param lore        lore of material
      * @param lore2       usually null but is not null if item has two lines of lore
-     * @param return      returns item
      */
-
     public static ItemStack createItem(Material material, int amount, int shrt, String displayname, String lore, String lore2) {
         ItemStack item = new ItemStack(material, amount, (short) shrt);
         ItemMeta meta = item.getItemMeta();
@@ -96,7 +94,7 @@ public class Api {
     }
 
 
-    /**
+    /*
      * @param material Material.WRITTEN_BOOK
      * @param Author   Author name
      * @param Title    Book title
@@ -107,7 +105,7 @@ public class Api {
      * @param page4    Page 4 (any page can be nulled if it does not exist in current context etc)
      * @return
      */
-    public static ItemStack createBook(Material material, String Author, String Title, Player p, String page1, String page2, String page3, String page4) {
+    /*public static ItemStack createBook(Material material, String Author, String Title, Player p, String page1, String page2, String page3, String page4) {
         ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
         BookMeta bm = (BookMeta) book.getItemMeta();
         bm.addPage(page1, page2, page4);    //set book pages
@@ -116,9 +114,9 @@ public class Api {
         book.setItemMeta(bm);
         p.getInventory().addItem(book);
         return book;
-    }
+    }*/
 
-    public static ItemStack createBook2(Material material, String Author, String Title, Player p, String... pages) {
+    public static void createBook2(Material material, String Author, String Title, Player p, String... pages) {
         ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
         BookMeta bm = (BookMeta) book.getItemMeta();
         bm.addPage(pages);    //set book pages
@@ -126,6 +124,6 @@ public class Api {
         bm.setTitle(Title);    //set book name
         book.setItemMeta(bm);
         p.getInventory().addItem(book);
-        return book;
+        //return book;
     }
 }

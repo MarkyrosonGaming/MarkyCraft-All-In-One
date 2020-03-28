@@ -23,7 +23,7 @@ public class Listeners implements Listener {
 
     private Main plugin = Main.getInstance();
 
-    @EventHandler
+    /*@EventHandler
     public void onJoin(PlayerJoinEvent e) {
         UUID uuid = e.getPlayer().getUniqueId();
         Player p = e.getPlayer();
@@ -32,7 +32,7 @@ public class Listeners implements Listener {
             plugin.getMoney().put(uuid, 0);
         else
             plugin.getMoney().put(uuid, plugin.getConfig().getInt(p.getUniqueId() + ".Silver"));
-    }
+    }*/
 
     @EventHandler
     public void onKill(EntityDeathEvent e) {
@@ -42,7 +42,7 @@ public class Listeners implements Listener {
                 //plugin.getApi().giveSilver(p, 200);
                 EconomyResponse r = Main.econ.depositPlayer(p, 200);
                 if(r.transactionSuccess())
-                    p.sendMessage(String.format("You killed a monster! Good job! :-) %s and now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
+                    p.sendMessage(String.format("You killed a monster! Good job! :-) Take %s as a reward. You now have %s", Main.econ.format(r.amount), Main.econ.format(r.balance)));	//send success message &^ tell player what they spent/remaining balance
                 else
                     p.sendMessage(String.format("An error occured: %s", r.errorMessage));	//send error message
             }
@@ -346,7 +346,7 @@ public class Listeners implements Listener {
 
                 p.getInventory().addItem(stack);    //give player created item stack
             }
-            p.updateInventory();	//update the player inventory
+            //p.updateInventory();	//update the player inventory
             if(!isBuying)
                 p.sendMessage(String.format("You sold " + stack.getAmount() + " " + name + " for %s and now have %s",
                         Main.econ.format(economyResponse.amount), Main.econ.format(economyResponse.balance)));
@@ -395,14 +395,14 @@ public class Listeners implements Listener {
             System.out.println("= world");
             //Add item
             p.getInventory().addItem(compass);
-            p.updateInventory();
+            //p.updateInventory();
         }
         //if(!p.getWorld().equals("world")) {
         else {
             System.out.println("!= world");
             if (p.getInventory().contains(Material.COMPASS)) {
                 p.getInventory().removeItem(new ItemStack(Material.COMPASS, 1));
-                p.updateInventory();
+                //p.updateInventory();
             }
         }
     }
